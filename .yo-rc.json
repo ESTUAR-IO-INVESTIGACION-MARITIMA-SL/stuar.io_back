@@ -1,0 +1,32 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "authenticationType": "jwt",
+    "baseName": "stuario",
+    "buildTool": "maven",
+    "cacheProvider": "ehcache",
+    "creationTimestamp": 1754460878771,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "enableHibernateCache": false,
+    "enableSwaggerCodegen": false,
+    "enableTranslation": false,
+    "entities": [],
+    "feignClient": null,
+    "jhipsterVersion": "8.7.3",
+    "jwtSecretKey": "NzQ3MDliZGIyNDU2YTZiYTE4ODM3ZTFjNmQxNzk4NDMyOGQ5NzYzYWY1N2E3MjM3ZWQ1Yzk0NzIzMzc5YjhhNTgyZjczOGQ2OTBiMDNiZmU3NDVkZTJlYzVmMjRmMjBkZmIwOGQzODQwYTM4MWE3NWUxODczYzAxMzJkMmQ4N2U=",
+    "messageBroker": false,
+    "nativeLanguage": "es",
+    "packageName": "stuar.io",
+    "prodDatabaseType": "mysql",
+    "reactive": false,
+    "searchEngine": false,
+    "serverPort": null,
+    "serverSideOptions": [],
+    "serviceDiscoveryType": false,
+    "skipClient": true,
+    "syncUserWithIdp": null,
+    "testFrameworks": [],
+    "websocket": false
+  }
+}
