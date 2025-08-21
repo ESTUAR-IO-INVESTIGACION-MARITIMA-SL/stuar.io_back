@@ -1,0 +1,55 @@
+{
+  "annotations": {
+    "changelogDate": "20250820143342"
+  },
+  "applications": "*",
+  "documentation": "Polygon belonging to a single zone; contains many rafts and many polygon points.",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength", "unique"],
+      "fieldValidateRulesMaxlength": "140",
+      "fieldValidateRulesMinlength": "2"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "1000"
+    }
+  ],
+  "name": "Poligono",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "batea",
+      "otherEntityRelationshipName": "poligono",
+      "relationshipName": "bateas",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "poligonoPunto",
+      "otherEntityRelationshipName": "poligono",
+      "relationshipName": "points",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "options": {
+        "onDelete": "CASCADE"
+      },
+      "otherEntityField": "name",
+      "otherEntityName": "zona",
+      "otherEntityRelationshipName": "poligonos",
+      "relationshipName": "zona",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

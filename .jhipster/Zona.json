@@ -1,0 +1,45 @@
+{
+  "annotations": {
+    "changelogDate": "20250820143344"
+  },
+  "applications": "*",
+  "documentation": "Top-level area containing many polygons and many zone points.",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "documentation": "Business name shown in UIs; unique within this context.",
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength", "unique"],
+      "fieldValidateRulesMaxlength": "140",
+      "fieldValidateRulesMinlength": "2"
+    },
+    {
+      "documentation": "Optional longer description.",
+      "fieldName": "description",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "1000"
+    }
+  ],
+  "name": "Zona",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "poligono",
+      "otherEntityRelationshipName": "zona",
+      "relationshipName": "poligonos",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "zonaPunto",
+      "otherEntityRelationshipName": "zona",
+      "relationshipName": "points",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

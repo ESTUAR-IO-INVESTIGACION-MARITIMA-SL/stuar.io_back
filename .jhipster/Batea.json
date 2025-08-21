@@ -1,0 +1,60 @@
+{
+  "annotations": {
+    "changelogDate": "20250820143341"
+  },
+  "applications": "*",
+  "documentation": "Single raft (batea) located at a single (x,y) coordinate, inside one polygon.",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength", "unique"],
+      "fieldValidateRulesMaxlength": "140",
+      "fieldValidateRulesMinlength": "2"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "1000"
+    },
+    {
+      "documentation": "Owner's display name (not linked to User for now).",
+      "fieldName": "ownerName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "140",
+      "fieldValidateRulesMinlength": "2"
+    },
+    {
+      "documentation": "Coordinates for the single point location.",
+      "fieldName": "x",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "y",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Batea",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "options": {
+        "onDelete": "CASCADE"
+      },
+      "otherEntityField": "name",
+      "otherEntityName": "poligono",
+      "otherEntityRelationshipName": "bateas",
+      "relationshipName": "poligono",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

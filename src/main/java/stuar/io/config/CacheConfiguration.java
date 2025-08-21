@@ -41,6 +41,15 @@ public class CacheConfiguration {
             createCache(cm, stuar.io.repository.UserRepository.USERS_BY_LOGIN_CACHE);
             createCache(cm, stuar.io.repository.UserRepository.USERS_BY_EMAIL_CACHE);
             createCache(cm, stuar.io.domain.Authority.class.getName());
+            createCache(cm, stuar.io.domain.Batea.class.getName());
+            createCache(cm, stuar.io.domain.Poligono.class.getName());
+            createCache(cm, stuar.io.domain.Poligono.class.getName() + ".bateas");
+            createCache(cm, stuar.io.domain.Poligono.class.getName() + ".points");
+            createCache(cm, stuar.io.domain.PoligonoPunto.class.getName());
+            createCache(cm, stuar.io.domain.Zona.class.getName());
+            createCache(cm, stuar.io.domain.Zona.class.getName() + ".poligonos");
+            createCache(cm, stuar.io.domain.Zona.class.getName() + ".points");
+            createCache(cm, stuar.io.domain.ZonaPunto.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

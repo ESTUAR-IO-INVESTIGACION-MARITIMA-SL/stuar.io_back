@@ -1,0 +1,47 @@
+{
+  "annotations": {
+    "changelogDate": "20250820143345"
+  },
+  "applications": "*",
+  "documentation": "Vertex for a Zone polygon (stores a single point with ordering).",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "documentation": "X coordinate (longitude or projected X).",
+      "fieldName": "x",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "Y coordinate (latitude or projected Y).",
+      "fieldName": "y",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "documentation": "Vertex order to reconstruct the polygon reliably (0-based).",
+      "fieldName": "orderIndex",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
+    }
+  ],
+  "name": "ZonaPunto",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "options": {
+        "onDelete": "CASCADE"
+      },
+      "otherEntityField": "name",
+      "otherEntityName": "zona",
+      "otherEntityRelationshipName": "points",
+      "relationshipName": "zona",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

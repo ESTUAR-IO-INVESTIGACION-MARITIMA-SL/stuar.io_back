@@ -1,0 +1,44 @@
+{
+  "annotations": {
+    "changelogDate": "20250820143343"
+  },
+  "applications": "*",
+  "documentation": "Vertex for a Polygon (stores a single point with ordering).",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "x",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "y",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "orderIndex",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
+    }
+  ],
+  "name": "PoligonoPunto",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "options": {
+        "onDelete": "CASCADE"
+      },
+      "otherEntityField": "name",
+      "otherEntityName": "poligono",
+      "otherEntityRelationshipName": "points",
+      "relationshipName": "poligono",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}
