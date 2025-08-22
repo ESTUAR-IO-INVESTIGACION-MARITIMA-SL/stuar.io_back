@@ -1,0 +1,93 @@
+/**
+ * JDL for Zones -> Polygons -> Rafts (Bateas) with geometry points.
+ * Comments are in English; entity/field names use a neutral style.
+ *
+ * Conventions & best practices used:
+ * - DTOs with MapStruct for clean controllers and mapping.
+ * - Service layer (serviceClass) for domain logic.
+ * - Pagination for list endpoints and criteria filtering enabled.
+ * - Required relationships on child side and CASCADE delete on parent side to avoid orphans.
+ * - Geometry points modeled as child entities with an orderIndex to preserve polygon vertex order.
+ */
+
+///////////////////////////////////////////////////////
+// Entities
+///////////////////////////////////////////////////////
+
+/** Top-level area containing many polygons and many zone points. */
+entity Zona {
+  /** Business name shown in UIs; unique within this context. */
+  name String required minlength(2) maxlength(140) unique
+  /** Optional longer description. */
+  description String maxlength(1000)
+}
+
+/** Polygon belonging to a single zone; contains many rafts and many polygon points. */
+entity Poligono {
+  name String required minlength(2) maxlength(140) unique
+  description String maxlength(1000)
+}
+
+/** Single raft (batea) located at a single (x,y) coordinate, inside one polygon. */
+entity Batea {
+  name String required minlength(2) maxlength(140) unique
+  description String maxlength(1000)
+  /** Owner's display name (not linked to User for now). */
+  ownerName String required minlength(2) maxlength(140)
+  /** Coordinates for the single point location. */
+  x Double required
+  y Double required
+}
+
+/** Vertex for a Zone polygon (stores a single point with ordering). */
+entity ZonaPunto {
+  /** X coordinate (longitude or projected X). */
+  x Double required
+  /** Y coordinate (latitude or projected Y). */
+  y Double required
+  /** Vertex order to reconstruct the polygon reliably (0-based). */
+  orderIndex Integer required min(0)
+}
+
+/** Vertex for a Polygon (stores a single point with ordering). */
+entity PoligonoPunto {
+  x Double required
+  y Double required
+  orderIndex Integer required min(0)
+}
+
+///////////////////////////////////////////////////////
+// Relationships
+///////////////////////////////////////////////////////
+
+/**
+ * Relationships use display field (name) on the child selector.
+ * The child sides are required (cannot exist without parent).
+ * OnDelete CASCADE is applied on the parent side to remove children automatically.
+ */
+relationship OneToMany {
+  @OnDelete("CASCADE")
+  Zona{poligonos} to Poligono{zona(name) required},
+
+  @OnDelete("CASCADE")
+  Poligono{bateas} to Batea{poligono(name) required},
+
+  @OnDelete("CASCADE")
+  Zona{points} to ZonaPunto{zona(name) required},
+
+  @OnDelete("CASCADE")
+  Poligono{points} to PoligonoPunto{poligono(name) required}
+}
+
+///////////////////////////////////////////////////////
+// Global options (DTOs, services, pagination, filtering)
+///////////////////////////////////////////////////////
+
+/**
+ * Apply consistent options to all entities:
+ * - mapstruct DTOs
+ * - service layer with concrete class
+ * - pagination on list endpoints
+ * - criteria-based filtering (requires serviceClass, auto-enabled)
+ */
+use mapstruct, serviceClass, pagination, filter for *
